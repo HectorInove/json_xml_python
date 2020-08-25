@@ -15,6 +15,12 @@ __author__ = "Inove Coding School"
 __email__ = "alumnos@inove.com.ar"
 __version__ = "1.1"
 
+import json
+import requests
+import xml.etree.ElementTree as ET
+
+import matplotlib.pyplot as plt
+import matplotlib.axes
 
 def ej1():
     # JSON Serialize
@@ -30,7 +36,25 @@ def ej1():
     #  { "prenda": "remeras", "cantidad": 12 }
     # Que su lista de prendas dentro del JSON tenga al menos 2 prendas
 
-    # json_data = {...}
+    json_data = {
+                "nombre": "Marcos",
+                "apellido": "Escalzo",
+                "DNI": 38999666,
+                "Cantidad prendas": [
+                    {
+                    "Prenda": "pares zapatilla",
+                    "cantidad": 3
+                    },
+                    {
+                    "Prenda": "campera",
+                    "cantidad": 5
+                    }
+                    ]
+                }
+
+    with open('ej_1.json', 'w') as jsonfile:
+        data = [json_data]
+        json.dump(data, jsonfile, indent=4)
 
     # Una vez que finalice el JSON realice un "dump" para almacenarlo en
     # un archivo que usted defina
@@ -40,6 +64,12 @@ def ej1():
 
 
 def ej2():
+    
+    with open('ej_1.json', 'r') as jsonfile:
+        current_data = json.load(jsonfile)
+    json_string = json.dumps(current_data, indent=4)
+    print(json_string)
+    
     # JSON Deserialize
     # Basado en el ejercicio anterior debe abrir y leer el contenido
     # del archivo y guardarlo en un objeto JSON utilizando el método
@@ -64,6 +94,15 @@ def ej3():
 
 def ej4():
     # XML Parser
+
+    tree = ET.parse('datos.xml')
+    root = tree.getroot()
+
+    
+    for child in root:
+        print(child.tag, ":", child.attrib, child.text)
+        for child2 in child:
+            print(child2.tag, ":", child2.text)
     # Tomar el archivo realizado en el punto anterior
     # e iterar todas las tags del archivo e imprimirlas
     # en pantalla tal como se realizó en el ejemplo de clase.
@@ -102,12 +141,69 @@ def ej5():
     # y verifique si los primeros usuarios (mirando la página a ojo)
     # los datos recolectados son correctos.
 
+    u1 = 0
+    u2 = 0
+    u3 = 0
+    u4 = 0
+    u5 = 0
+    u6 = 0
+    u7 = 0
+    u8 = 0
+    u9 = 0
+    u10 = 0
+    
+    url = "https://jsonplaceholder.typicode.com/todos"
+    response = requests.get(url)
+    dataset = response.json()
+
+    filter_data1 = [x['userId'] for x in dataset if x.get('completed') is True]
+
+    for user in filter_data1:
+        if user == 1:
+            u1 += 1
+        elif user == 2:
+            u2 += 1
+        elif user == 3:
+            u3 += 1
+        elif user == 4:
+            u4 += 1
+        elif user == 5:
+            u5 += 1
+        elif user == 6:
+            u6 += 1
+        elif user == 7:
+            u7 += 1
+        elif user == 8:
+            u8 += 1
+        elif user == 9:
+            u9 += 1
+        elif user == 10:
+            u10 += 1
+
+    users_titles = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10]
+    users = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    fig = plt.figure()
+    fig.suptitle('ej 5', fontsize=16)
+    ax = fig.add_subplot()
+
+    
+
+    ax.pie(users_titles, labels=users,
+           autopct='%1.1f%%', shadow=True, startangle=90
+           )
+    
+    ax.axis('equal')
+    plt.show()
+
+
+
 
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
-    ej1()
-    # ej2()
-    # ej3()
-    # ej4()
-    # ej5()
+    #ej1()
+    #ej2()
+    #ej3()
+    #ej4()
+    ej5()
