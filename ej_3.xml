@@ -1,0 +1,17 @@
+[
+    {
+        "nombre": "Marcos",
+        "apellido": "Escalzo",
+        "DNI": 38999666,
+        "Cantidad prendas": [
+            {
+                "Prenda": "pares zapatilla",
+                "cantidad": 3
+            },
+            {
+                "Prenda": "campera",
+                "cantidad": 5
+            }
+        ]
+    }
+]
