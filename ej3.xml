@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<data>
+    <nombre>Marcos</nombre>
+    <apellido>Escalzo</apellido>
+    <dni>38999666</dni>
+    <prendas name="pares zapatilla">
+        <cantidad>3</cantidad>        
+    </prendas>
+    <prendas name="camperas">
+        <cantidad>5</cantidad>        
+    </prendas>
+</data>
