@@ -33,6 +33,9 @@ def transform(dataset, min, max):
 
     min_count = [x for x in dataset if x.get("price") < min]
     min_max_count = [x for x in dataset if x.get("price") > min and x.get("price") < max]
+    # Inovetip: En la lista "min_max_count" hace que sean >= y <= así los valores de min y
+    # max quedan comprendidos dentro de alguno de los rangos, sino te perdes los valores de
+    # min y max en el conteo. 
     max_count = [x for x in dataset if x.get("price") > max]
 
     lista = [len(min_count), len(min_max_count), len(max_count)]
