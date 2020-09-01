@@ -96,6 +96,7 @@ def ej4():
     # XML Parser
 
     tree = ET.parse('datos.xml')
+    # Inovetip: Acá en vez de datos.xml, tu archivo es ej3.xml
     root = tree.getroot()
 
     
@@ -140,7 +141,13 @@ def ej5():
     # para imprimir cuantos títulos completó cada usuario
     # y verifique si los primeros usuarios (mirando la página a ojo)
     # los datos recolectados son correctos.
-
+    
+    # Inovetip: Tenes que buscar la manera de hacer que el programa
+    # admita una cantidad n de usuarios, de esa manera tu programa va a ser escalable
+    # Por ejemplo, en vez de declarar 10 usuarios, crea una lista vacía user_id = []
+    # y la vas completando con user_id.append(), de esa manera, no importa cuantos usuarios
+    # tenga el request, siempre va a haber una lista que se acomoda a tu request.
+    
     u1 = 0
     u2 = 0
     u3 = 0
@@ -158,6 +165,7 @@ def ej5():
 
     filter_data1 = [x['userId'] for x in dataset if x.get('completed') is True]
 
+    # Inovetip: En esta parte podes volver a utilizar compresión de listas? 
     for user in filter_data1:
         if user == 1:
             u1 += 1
